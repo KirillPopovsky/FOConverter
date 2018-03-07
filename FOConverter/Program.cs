@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FOConverter.scr;
+﻿using FOConverter.scr;
 
 namespace FOConverter
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Configuration config = new Configuration();
+            var config = new PathsPropsConfig();
             config.ReadConfig();
         }
     }
