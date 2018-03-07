@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FOConverter.scr;
 
 namespace FOConverter
 {
@@ -10,7 +11,8 @@ namespace FOConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello FO4");
+            Configuration config = new Configuration();
+            config.ReadConfig();
         }
     }
 }
