@@ -3,6 +3,12 @@ using Newtonsoft.Json;
 
 namespace FOConverter.scr
 {
+    public struct Constants
+    {
+        public const string F3ToF4 = "F3ToF4";
+        public const string FnvToF4 = "FnvToF4";
+    }
+
     public struct ConfigData
     {
         public string sourceDataFolderPatch;
@@ -34,7 +40,7 @@ namespace FOConverter.scr
         {
             var config = new ConfigData
             {
-                convertType = "F3ToF4|FnvToF4//remove one and this text",
+                convertType = Constants.F3ToF4 + " or " + Constants.FnvToF4,
                 sourceDataFolderPatch = "D:\\Folder\\F3\\Data\\",
                 f4DataFolderPath = "D:\\Folder\\F4\\Data\\"
             };
