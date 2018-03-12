@@ -50,8 +50,12 @@ namespace FOConverter.scr
 
         public BaseRecord ReadRecordHeader()
         {
-            var bytes = this.ReadBytes(24);
-            return new BaseRecord(bytes);
+            var bytes = ReadBytes(BaseRecord.headerLength);
+            var record = new BaseRecord(bytes, fileStream.Position);
+            fileStream.Position += record.DataSize;
+            var h = ReadBytes(4);
+            Console.WriteLine(System.Text.Encoding.Default.GetString(h));
+            return record;
         }
     }
 }
