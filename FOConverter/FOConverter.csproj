@@ -49,8 +49,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scr\Converter.cs" />
+    <Compile Include="scr\EsmBinaryReader.cs" />
     <Compile Include="scr\PathPropsConfig.cs" />
     <Compile Include="scr\DataBaseReplacerConfig.cs" />
+    <Compile Include="scr\Records\BaseRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
