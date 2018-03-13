@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
+using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
 
 namespace FOConverter.scr
@@ -23,7 +22,6 @@ namespace FOConverter.scr
                 Console.WriteLine(path, " not found");
                 return;
             }
-
             fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
             binaryReader = new BinaryReader(fileStream);
             Console.WriteLine("Opened: " + path);
@@ -43,8 +41,6 @@ namespace FOConverter.scr
             {
                 bytes = binaryReader.ReadBytes(lenght);
             }
-
-
             return bytes;
         }
 
@@ -53,9 +49,15 @@ namespace FOConverter.scr
             var bytes = ReadBytes(BaseRecord.headerLength);
             var record = new BaseRecord(bytes, fileStream.Position);
             fileStream.Position += record.DataSize;
-            var h = ReadBytes(4);
-            Console.WriteLine(System.Text.Encoding.Default.GetString(h));
             return record;
+        }
+
+        public Group ReadGroupHeader()
+        {
+            var bytes = ReadBytes(Group.headerLength);
+            var group = new Group(bytes, fileStream.Position);
+            fileStream.Position += group.DataSize;
+            return group;
         }
     }
 }
