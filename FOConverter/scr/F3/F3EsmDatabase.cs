@@ -31,11 +31,15 @@ namespace FOConverter.scr.F3
                 topLevelGroups.Add(group.Lable, group);
             }
 
-            topLevelGroupsKeys = topLevelGroups.Keys.ToArray();
-            Console.WriteLine("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
 
-            var recs = esmbr.ReadSubBaseRecords(topLevelGroups[topLevelGroupsKeys[0]]);
-            Console.WriteLine("Recs of {0} : {1}", topLevelGroupsKeys[0], string.Join(" \n", recs));
+            topLevelGroupsKeys = topLevelGroups.Keys.ToArray();
+            foreach (var grup in topLevelGroupsKeys)
+            {
+                var recs = esmbr.ReadSubBaseRecords(topLevelGroups[grup]);
+                Console.WriteLine("Recs of {0} : {1}", grup, string.Join(" \n", recs.AsEnumerable()));
+            }
+
+            Console.WriteLine("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
         }
     }
 }

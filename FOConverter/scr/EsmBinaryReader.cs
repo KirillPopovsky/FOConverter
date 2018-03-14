@@ -65,12 +65,18 @@ namespace FOConverter.scr
             List<BaseRecord> records = new List<BaseRecord>();
             if (parentRecord.Signature == "GRUP")
             {
-                while (parentRecord.DataAddress + parentRecord.DataSize != fileStream.Position)
+                fileStream.Position = parentRecord.DataAddress;
+                while (parentRecord.DataAddress + parentRecord.DataSize - Group.headerLength != fileStream.Position)
                 {
                     var bytes = binaryReader.ReadBytes(BaseRecord.headerLength);
                     var record = new BaseRecord(bytes, fileStream.Position);
+                    fileStream.Position += record.DataSize - (record.Signature == "GRUP" ? Group.headerLength : 0);
                     records.Add(record);
                 }
+            }
+            else
+            {
+                Console.WriteLine("Parent record is not group : {0}", parentRecord.Signature);
             }
 
             return records.ToArray();
