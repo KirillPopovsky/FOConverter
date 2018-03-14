@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
 
@@ -16,6 +17,7 @@ namespace FOConverter.scr.F3
         private Record TES4;
 
         private Dictionary<string, TopLevelGroup> topLevelGroups;
+        private string[] topLevelGroupsKeys;
 
         public override void Read(string _path)
         {
@@ -23,13 +25,17 @@ namespace FOConverter.scr.F3
             TES4 = esmbr.ReadRecordHeader();
             topLevelGroups = new Dictionary<string, TopLevelGroup>();
             Console.WriteLine("TES4 Record:\n" + TES4);
-            Console.WriteLine("Groups: \n");
             while (!esmbr.EndOfFile)
             {
                 var group = esmbr.ReadTopLevel();
                 topLevelGroups.Add(group.Lable, group);
-                Console.WriteLine(group);
             }
+
+            topLevelGroupsKeys = topLevelGroups.Keys.ToArray();
+            Console.WriteLine("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
+
+            var recs = esmbr.ReadSubBaseRecords(topLevelGroups[topLevelGroupsKeys[0]]);
+            Console.WriteLine("Recs of {0} : {1}", topLevelGroupsKeys[0], string.Join(" \n", recs));
         }
     }
 }

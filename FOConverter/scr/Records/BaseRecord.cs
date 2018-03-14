@@ -11,7 +11,14 @@ namespace FOConverter.scr.Records
         public BaseRecord(byte[] recordHeaderData, long dataAddress)
         {
             HeaderData = recordHeaderData;
-            DataAddress = dataAddress;
+            _dataAddress = dataAddress;
+        }
+
+        public override string ToString()
+        {
+            return String.Format(
+                "Signature: {0},\nDataSize: {1},\nDataAddress: {2}\n",
+                Signature, DataSize, _dataAddress);
         }
 
         protected readonly byte[] HeaderData;
@@ -28,7 +35,12 @@ namespace FOConverter.scr.Records
             get { return BitConverter.ToInt32(HeaderData, 4); }
         }
 
-        protected long DataAddress;
+        public long DataAddress
+        {
+            get { return _dataAddress; }
+        }
+
+        protected long _dataAddress;
         protected byte[] Data;
     }
 }

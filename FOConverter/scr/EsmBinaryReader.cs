@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
@@ -57,6 +58,22 @@ namespace FOConverter.scr
             var record = new Record(bytes, fileStream.Position);
             fileStream.Position += record.DataSize;
             return record;
+        }
+
+        public BaseRecord[] ReadSubBaseRecords(BaseRecord parentRecord)
+        {
+            List<BaseRecord> records = new List<BaseRecord>();
+            if (parentRecord.Signature == "GRUP")
+            {
+                while (parentRecord.DataAddress + parentRecord.DataSize != fileStream.Position)
+                {
+                    var bytes = binaryReader.ReadBytes(BaseRecord.headerLength);
+                    var record = new BaseRecord(bytes, fileStream.Position);
+                    records.Add(record);
+                }
+            }
+
+            return records.ToArray();
         }
 
         public Group ReadGroupHeader()

@@ -14,7 +14,7 @@ namespace FOConverter.scr.Groups
         {
             return String.Format(
                 "Signature: {0},\nLable: {5},\nDataSize: {1},\nGroupType: {2},\nStamp: {3},\nDataAddress: {4}\n",
-                Signature, DataSize, GroupType, Stamp, DataAddress, Lable);
+                Signature, DataSize, GroupType, Stamp, _dataAddress, Lable);
         }
 
         public string Lable

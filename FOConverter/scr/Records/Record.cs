@@ -14,7 +14,7 @@ namespace FOConverter.scr.Records
         {
             return String.Format(
                 "Signature: {0},\nDataSize: {1},\nFlags: {2},\nFormID: {3},\nRevision: {4},\nFormVersion: {5},\nDataAddress: {6}\n",
-                Signature, DataSize, Flags, FormId, Revision, FormVersion, DataAddress);
+                Signature, DataSize, Flags, FormId, Revision, FormVersion, _dataAddress);
         }
 
         //8..12
