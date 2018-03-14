@@ -1,37 +1,24 @@
 ﻿using System;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using FOConverter.scr.F3;
+using FOConverter.scr.Groups;
 
 namespace FOConverter.scr
 {
-    public abstract class EsmBaseAdapter
-    {
-        public abstract void Read(string _path);
-    }
-
-
-    public class F3baseAdaper : EsmBaseAdapter
-    {
-        public override void Read(string _path)
-        {
-            var esmbr = new EsmBinaryReader(_path + "\\Fallout3.esm");
-            var r = esmbr.ReadRecordHeader();
-            Console.WriteLine(r);
-        }
-    }
-
     public class Converter
     {
-        private EsmBaseAdapter esmBase;
+        private EsmDatabase esmBase;
 
-        private EsmBaseAdapter getEsmAdapter(string type)
+        private EsmDatabase getEsmAdapter(string type)
         {
             switch (type)
             {
                 case Constants.F3ToF4:
-                    return new F3baseAdaper();
+                    return new F3EsmDatabase();
                     break;
             }
 

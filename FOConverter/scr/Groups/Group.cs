@@ -10,9 +10,15 @@ namespace FOConverter.scr.Groups
         public Group(byte[] data, long address) : base(data, address)
         {
         }
+        public override string ToString()
+        {
+            return String.Format(
+                "Signature: {0},\nDataSize: {1},\nGroupType: {2},\nStamp: {3},\nDataAddress: {4}\n",
+                Signature, DataSize, GroupType, Stamp, DataAddress);
+        }
 
         //8..12
-        public byte[] Label
+        protected byte[] _lable
         {
             get { return new ArraySegment<byte>(HeaderData, 8, 4).ToArray(); }
         }

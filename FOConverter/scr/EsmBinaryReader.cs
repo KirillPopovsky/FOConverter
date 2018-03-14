@@ -15,6 +15,11 @@ namespace FOConverter.scr
             get { return fileStream.Position; }
         }
 
+        public bool EndOfFile
+        {
+            get { return fileStream.Position == fileStream.Length; }
+        }
+
         public EsmBinaryReader(string path)
         {
             if (!File.Exists(path))
@@ -22,6 +27,7 @@ namespace FOConverter.scr
                 Console.WriteLine(path, " not found");
                 return;
             }
+
             fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
             binaryReader = new BinaryReader(fileStream);
             Console.WriteLine("Opened: " + path);
@@ -41,13 +47,14 @@ namespace FOConverter.scr
             {
                 bytes = binaryReader.ReadBytes(lenght);
             }
+
             return bytes;
         }
 
-        public BaseRecord ReadRecordHeader()
+        public Record ReadRecordHeader()
         {
             var bytes = ReadBytes(BaseRecord.headerLength);
-            var record = new BaseRecord(bytes, fileStream.Position);
+            var record = new Record(bytes, fileStream.Position);
             fileStream.Position += record.DataSize;
             return record;
         }
@@ -56,7 +63,15 @@ namespace FOConverter.scr
         {
             var bytes = ReadBytes(Group.headerLength);
             var group = new Group(bytes, fileStream.Position);
-            fileStream.Position += group.DataSize;
+            fileStream.Position += group.DataSize - Group.headerLength;
+            return group;
+        }
+
+        public TopLevelGroup ReadTopLevel()
+        {
+            var bytes = ReadBytes(Group.headerLength);
+            var group = new TopLevelGroup(bytes, fileStream.Position);
+            fileStream.Position += group.DataSize - Group.headerLength;
             return group;
         }
     }

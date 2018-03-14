@@ -51,8 +51,10 @@
     <Compile Include="scr\Common\EsmByteConverter.cs" />
     <Compile Include="scr\Converter.cs" />
     <Compile Include="scr\EsmBinaryReader.cs" />
+    <Compile Include="scr\F3\F3EsmDatabase.cs" />
+    <Compile Include="scr\Groups\Group.cs" />
+    <Compile Include="scr\Groups\TopLevelGroup.cs" />
     <Compile Include="scr\PathPropsConfig.cs" />
-    <Compile Include="scr\Records\Group.cs" />
     <Compile Include="scr\Records\Record.cs" />
     <Compile Include="scr\Records\BaseRecord.cs" />
   </ItemGroup>
