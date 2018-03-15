@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FOConverter.scr.Common;
 using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
 
@@ -24,7 +25,7 @@ namespace FOConverter.scr.F3
             var esmbr = new EsmBinaryReader(_path + "\\Fallout3.esm");
             TES4 = esmbr.ReadRecordHeader();
             topLevelGroups = new Dictionary<string, TopLevelGroup>();
-            Console.WriteLine("TES4 Record:\n" + TES4);
+            console.log("TES4 Record:\n" + TES4);
             while (!esmbr.EndOfFile)
             {
                 var group = esmbr.ReadTopLevel();
@@ -36,10 +37,10 @@ namespace FOConverter.scr.F3
             foreach (var grup in topLevelGroupsKeys)
             {
                 var recs = esmbr.ReadSubBaseRecords(topLevelGroups[grup]);
-                Console.WriteLine("Recs of {0} : {1}", grup, string.Join(" \n", recs.AsEnumerable()));
+                console.log("\nRecs of {0} :\n\n{1}", grup, string.Join(" \n", recs.AsEnumerable()));
             }
 
-            Console.WriteLine("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
+            console.log("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
         }
     }
 }

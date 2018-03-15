@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using FOConverter.scr.Common;
 using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
 
@@ -25,13 +26,13 @@ namespace FOConverter.scr
         {
             if (!File.Exists(path))
             {
-                Console.WriteLine(path, " not found");
+                console.log(path, " not found");
                 return;
             }
 
             fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
             binaryReader = new BinaryReader(fileStream);
-            Console.WriteLine("Opened: " + path);
+            console.log("Opened: " + path);
         }
 
         public byte[] ReadBytes(int lenght, long position = -1)
@@ -76,7 +77,7 @@ namespace FOConverter.scr
             }
             else
             {
-                Console.WriteLine("Parent record is not group : {0}", parentRecord.Signature);
+                console.log("Parent record is not group : {0}", parentRecord.Signature);
             }
 
             return records.ToArray();
