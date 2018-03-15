@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FOConverter.scr.Common;
 
@@ -12,6 +13,14 @@ namespace FOConverter.scr.Records
         {
             HeaderData = recordHeaderData;
             _dataAddress = dataAddress;
+            SubRecords = new List<BaseRecord>();
+        }
+
+        public BaseRecord(byte[] recordHeaderData, long dataAddress, List<BaseRecord> subRecords)
+        {
+            HeaderData = recordHeaderData;
+            _dataAddress = dataAddress;
+            SubRecords = subRecords;
         }
 
         public override string ToString()
@@ -22,6 +31,8 @@ namespace FOConverter.scr.Records
         }
 
         protected readonly byte[] HeaderData;
+
+        public List<BaseRecord> SubRecords;
 
         //0..4
         public string Signature

@@ -25,7 +25,7 @@ namespace FOConverter.scr.F3
             var esmbr = new EsmBinaryReader(_path + "\\Fallout3.esm");
             TES4 = esmbr.ReadRecordHeader();
             topLevelGroups = new Dictionary<string, TopLevelGroup>();
-            console.log("TES4 Record:\n" + TES4);
+            console.log("\nTES4 Record:\n" + TES4 + " \n");
             while (!esmbr.EndOfFile)
             {
                 var group = esmbr.ReadTopLevel();
@@ -40,7 +40,7 @@ namespace FOConverter.scr.F3
                 console.log("\nRecs of {0} :\n\n{1}", grup, string.Join(" \n", recs.AsEnumerable()));
             }
 
-            console.log("Groups: \n{0}", string.Join(" ,", topLevelGroupsKeys));
+            console.log("Groups: \n{0}", string.Join(", ", topLevelGroupsKeys));
         }
     }
 }

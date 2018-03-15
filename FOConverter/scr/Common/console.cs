@@ -23,7 +23,6 @@ namespace FOConverter.scr.Common
         public static void log(string format, params object[] args)
         {
             var str = String.Format(format, args);
-
             if (File.Exists(Path))
             {
                 File.AppendAllText(Path, str);
