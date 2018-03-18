@@ -71,7 +71,10 @@ namespace FOConverter.scr
                 {
                     var bytes = binaryReader.ReadBytes(BaseRecord.headerLength);
                     var record = new BaseRecord(bytes, fileStream.Position);
-                    fileStream.Position += record.DataSize - (record.Signature == "GRUP" ? Group.headerLength : 0);
+                    var subrecords = ReadSubBaseRecords(record);
+                    record.SubRecords = subrecords;
+                    fileStream.Position = parentRecord.DataAddress + record.DataSize +
+                                          (record.Signature == "GRUP" ? 0 : BaseRecord.headerLength);
                     records.Add(record);
                 }
             }
