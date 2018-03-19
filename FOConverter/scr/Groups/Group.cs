@@ -7,9 +7,12 @@ namespace FOConverter.scr.Groups
 {
     public class Group : BaseRecord
     {
+        public const string SignatureGRUP = "GRUP";
+
         public Group(byte[] data, long address) : base(data, address)
         {
         }
+
         public override string ToString()
         {
             return String.Format(

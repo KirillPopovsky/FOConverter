@@ -36,9 +36,9 @@ namespace FOConverter.scr.F3
             topLevelGroupsKeys = topLevelGroups.Keys.ToArray();
             foreach (var grup in topLevelGroupsKeys)
             {
-                var recs = esmbr.ReadSubBaseRecords(topLevelGroups[grup]);
+                var recs = esmbr.ReadChildBaseRecords(topLevelGroups[grup]);
                 console.log("\nRecs of {0} :\n\n{1}", grup, string.Join(" \n", recs.AsEnumerable()));
-                topLevelGroups[grup].SubRecords = recs;
+                topLevelGroups[grup].ChildRecords = recs;
             }
 
             console.log("Groups: \n{0}", string.Join(", ", topLevelGroupsKeys));

@@ -13,14 +13,14 @@ namespace FOConverter.scr.Records
         {
             HeaderData = recordHeaderData;
             _dataAddress = dataAddress;
-            SubRecords = new BaseRecord[0];
+            ChildRecords = new BaseRecord[0];
         }
 
-        public BaseRecord(byte[] recordHeaderData, long dataAddress, BaseRecord[] subRecords)
+        public BaseRecord(byte[] recordHeaderData, long dataAddress, BaseRecord[] childRecords)
         {
             HeaderData = recordHeaderData;
             _dataAddress = dataAddress;
-            SubRecords = subRecords;
+            ChildRecords = childRecords;
         }
 
         public override string ToString()
@@ -32,7 +32,7 @@ namespace FOConverter.scr.Records
 
         protected readonly byte[] HeaderData;
 
-        public BaseRecord[] SubRecords;
+        public BaseRecord[] ChildRecords;
 
         //0..4
         public string Signature
@@ -52,6 +52,6 @@ namespace FOConverter.scr.Records
         }
 
         protected long _dataAddress;
-        protected byte[] Data;
+        public byte[] Data;
     }
 }

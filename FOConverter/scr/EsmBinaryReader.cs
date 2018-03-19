@@ -62,11 +62,11 @@ namespace FOConverter.scr
         }
 
 
-        public BaseRecord[] ReadSubBaseRecords(BaseRecord parentRecord)
+        public BaseRecord[] ReadChildBaseRecords(BaseRecord parentRecord)
         {
             List<BaseRecord> records = new List<BaseRecord>();
 
-            if (parentRecord.Signature == "GRUP")
+            if (parentRecord.Signature == Group.SignatureGRUP)
             {
                 long pos = parentRecord.DataAddress;
                 fileStream.Position = pos;
@@ -76,10 +76,10 @@ namespace FOConverter.scr
                     var record = new BaseRecord(bytes, fileStream.Position);
 
                     pos = pos + BaseRecord.headerLength + record.DataSize -
-                          (record.Signature == "GRUP" ? Group.headerLength : 0);
+                          (record.Signature == Group.SignatureGRUP ? Group.headerLength : 0);
 
-                    var subrecords = ReadSubBaseRecords(record);
-                    record.SubRecords = subrecords;
+                    var childRecords = ReadChildBaseRecords(record);
+                    record.ChildRecords = childRecords;
 
                     fileStream.Position = pos;
                     records.Add(record);
@@ -88,31 +88,6 @@ namespace FOConverter.scr
             else
             {
                 console.debug("Parent record is not group : \n{0}", parentRecord);
-            }
-
-            return records.ToArray();
-        }
-
-        public BaseRecord[] ReadSubBaseRecords_(BaseRecord parentRecord)
-        {
-            List<BaseRecord> records = new List<BaseRecord>();
-            if (parentRecord.Signature == "GRUP")
-            {
-                fileStream.Position = parentRecord.DataAddress;
-                while (parentRecord.DataAddress + parentRecord.DataSize - Group.headerLength != fileStream.Position)
-                {
-                    var bytes = binaryReader.ReadBytes(BaseRecord.headerLength);
-                    var record = new BaseRecord(bytes, fileStream.Position);
-                    var subrecords = ReadSubBaseRecords(record);
-                    record.SubRecords = subrecords;
-                    fileStream.Position = parentRecord.DataAddress + record.DataSize +
-                                          (record.Signature == "GRUP" ? 0 : BaseRecord.headerLength);
-                    records.Add(record);
-                }
-            }
-            else
-            {
-                console.debug("Parent record is not group : {0}", parentRecord.Signature);
             }
 
             return records.ToArray();
@@ -132,6 +107,19 @@ namespace FOConverter.scr
             var group = new TopLevelGroup(bytes, fileStream.Position);
             fileStream.Position += group.DataSize - Group.headerLength;
             return group;
+        }
+
+        public void ReadData(ref BaseRecord record)
+        {
+            if (record.Signature == Group.SignatureGRUP)
+            {
+                console.debug("record is group {0}", record);
+                return;
+            }
+
+            fileStream.Position = record.DataAddress;
+            byte[] data = binaryReader.ReadBytes(record.DataSize);
+            record.Data = data;
         }
     }
 }

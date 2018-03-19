@@ -58,6 +58,8 @@
     <Compile Include="scr\PathPropsConfig.cs" />
     <Compile Include="scr\Records\Record.cs" />
     <Compile Include="scr\Records\BaseRecord.cs" />
+    <Compile Include="scr\Subrecords\EDID.cs" />
+    <Compile Include="scr\Subrecords\Subrecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
