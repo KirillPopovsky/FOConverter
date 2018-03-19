@@ -61,7 +61,39 @@ namespace FOConverter.scr
             return record;
         }
 
+
         public BaseRecord[] ReadSubBaseRecords(BaseRecord parentRecord)
+        {
+            List<BaseRecord> records = new List<BaseRecord>();
+
+            if (parentRecord.Signature == "GRUP")
+            {
+                long pos = parentRecord.DataAddress;
+                fileStream.Position = pos;
+                while (parentRecord.DataAddress + parentRecord.DataSize - Group.headerLength != fileStream.Position)
+                {
+                    var bytes = binaryReader.ReadBytes(BaseRecord.headerLength);
+                    var record = new BaseRecord(bytes, fileStream.Position);
+
+                    pos = pos + BaseRecord.headerLength + record.DataSize -
+                          (record.Signature == "GRUP" ? Group.headerLength : 0);
+
+                    var subrecords = ReadSubBaseRecords(record);
+                    record.SubRecords = subrecords;
+
+                    fileStream.Position = pos;
+                    records.Add(record);
+                }
+            }
+            else
+            {
+                console.debug("Parent record is not group : \n{0}", parentRecord);
+            }
+
+            return records.ToArray();
+        }
+
+        public BaseRecord[] ReadSubBaseRecords_(BaseRecord parentRecord)
         {
             List<BaseRecord> records = new List<BaseRecord>();
             if (parentRecord.Signature == "GRUP")
@@ -80,7 +112,7 @@ namespace FOConverter.scr
             }
             else
             {
-                console.log("Parent record is not group : {0}", parentRecord.Signature);
+                console.debug("Parent record is not group : {0}", parentRecord.Signature);
             }
 
             return records.ToArray();

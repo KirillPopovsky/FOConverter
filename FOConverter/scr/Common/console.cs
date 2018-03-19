@@ -20,6 +20,11 @@ namespace FOConverter.scr.Common
             File.Create(Path).Close();
         }
 
+        public static void debug(string format, params object[] args)
+        {
+            Console.Out.WriteLine(format, args);
+        }
+
         public static void log(string format, params object[] args)
         {
             var str = String.Format(format, args);
