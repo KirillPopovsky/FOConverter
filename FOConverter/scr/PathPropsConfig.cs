@@ -12,7 +12,7 @@ namespace FOConverter.scr
 
     public class PathsPropsConfig
     {
-        private readonly string configPath = Directory.GetCurrentDirectory() + @"\PathsConfig.json";
+        private readonly string configPath = Directory.GetCurrentDirectory() + @"\configurations\PathsConfig.json";
         private PatchsConfigData _patchsConfig;
 
         public string Fallout3DataPath

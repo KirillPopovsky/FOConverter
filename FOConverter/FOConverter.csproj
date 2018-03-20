@@ -69,10 +69,10 @@
     <Content Include="..\README.md">
       <Link>README.md</Link>
     </Content>
-    <Content Include="resources\ConvertConfig.json">
+    <Content Include="configurations\ConvertConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="resources\PathsConfig.json">
+    <Content Include="configurations\PathsConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
