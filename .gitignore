@@ -286,3 +286,10 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Own Configs
+/FOConverter/FOConverter/configurations/PathsConfig.json
+/FOConverter/configurations/PathsConfig.json
+/configurations/PathsConfig.json
+/PathsConfig.json
+PathsConfig.json
