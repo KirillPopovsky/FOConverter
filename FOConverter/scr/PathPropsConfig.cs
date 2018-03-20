@@ -3,46 +3,41 @@ using Newtonsoft.Json;
 
 namespace FOConverter.scr
 {
-    public struct Constants
+    public struct PatchsConfigData
     {
-        public const string F3ToF4 = "F3ToF4";
-        public const string FnvToF4 = "FnvToF4";
-    }
-
-    public struct ConfigData
-    {
-        public string sourceDataFolderPatch;
-        public string f4DataFolderPath;
-        public string convertType;
+        public string Fallout3DataFolderPath;
+        public string FalloutNVDataFolderPath;
+        public string Fallout4DataFolderPath;
     }
 
     public class PathsPropsConfig
     {
-        private readonly string configPath = Directory.GetCurrentDirectory() + @"\config.json";
-        private ConfigData config;
+        private readonly string configPath = Directory.GetCurrentDirectory() + @"\PathsConfig.json";
+        private PatchsConfigData _patchsConfig;
 
-        public string SourceDataPath
+        public string Fallout3DataPath
         {
-            get { return config.sourceDataFolderPatch; }
+            get { return _patchsConfig.Fallout3DataFolderPath; }
         }
 
-        public string F4DataPath
+        public string Fallout4DataPath
         {
-            get { return config.f4DataFolderPath; }
+            get { return _patchsConfig.Fallout4DataFolderPath; }
         }
 
-        public string ConvertType
+        public string FalloutNVDataPath
         {
-            get { return config.convertType; }
+            get { return _patchsConfig.FalloutNVDataFolderPath; }
         }
+
 
         public void CreateConfigTemplate()
         {
-            var config = new ConfigData
+            var config = new PatchsConfigData
             {
-                convertType = Constants.F3ToF4 + " or " + Constants.FnvToF4,
-                sourceDataFolderPatch = "D:\\Folder\\F3\\Data\\",
-                f4DataFolderPath = "D:\\Folder\\F4\\Data\\"
+                Fallout3DataFolderPath = @"D:\Games\Fallout3\Data\",
+                FalloutNVDataFolderPath = @"D:\Games\FalloutNV\Data\",
+                Fallout4DataFolderPath = @"D:\Games\Fallout4\Data\"
             };
             var output = JsonConvert.SerializeObject(config);
             File.WriteAllText(configPath, output);
@@ -52,7 +47,7 @@ namespace FOConverter.scr
         {
             if (!File.Exists(configPath)) return;
             var output = File.ReadAllText(configPath);
-            config = JsonConvert.DeserializeObject<ConfigData>(output);
+            _patchsConfig = JsonConvert.DeserializeObject<PatchsConfigData>(output);
         }
     }
 }

@@ -13,22 +13,16 @@ namespace FOConverter.scr
     {
         private EsmDatabase esmBase;
 
-        private EsmDatabase getEsmAdapter(string type)
+        private EsmDatabase getEsmAdapter()
         {
-            switch (type)
-            {
-                case Constants.F3ToF4:
-                    return new F3EsmDatabase();
-                    break;
-            }
-
-            throw new Exception("unknown converter type");
+            return new F3EsmDatabase();
+//            throw new Exception("unknown converter type");
         }
 
         public void Process(PathsPropsConfig configData)
         {
-            esmBase = getEsmAdapter(configData.ConvertType);
-            esmBase.Read(configData.SourceDataPath);
+            esmBase = getEsmAdapter();
+            esmBase.Read(configData.Fallout3DataPath);
         }
     }
 }
