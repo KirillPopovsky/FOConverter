@@ -19,7 +19,7 @@ namespace FOConverter.scr
 //            throw new Exception("unknown converter type");
         }
 
-        public void Process(PathsPropsConfig configData)
+        public void Process(Configuration configData)
         {
             esmBase = getEsmAdapter();
             esmBase.Read(configData.Fallout3DataPath);

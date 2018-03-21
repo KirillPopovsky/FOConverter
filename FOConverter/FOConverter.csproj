@@ -49,13 +49,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scr\Common\console.cs" />
+    <Compile Include="scr\Common\ConvertConfig.cs" />
     <Compile Include="scr\Common\EsmByteConverter.cs" />
+    <Compile Include="scr\Common\PathsConfig.cs" />
+    <Compile Include="scr\Configuration.cs" />
     <Compile Include="scr\Converter.cs" />
     <Compile Include="scr\EsmBinaryReader.cs" />
     <Compile Include="scr\F3\F3EsmDatabase.cs" />
     <Compile Include="scr\Groups\Group.cs" />
     <Compile Include="scr\Groups\TopLevelGroup.cs" />
-    <Compile Include="scr\PathPropsConfig.cs" />
     <Compile Include="scr\Records\Record.cs" />
     <Compile Include="scr\Records\BaseRecord.cs" />
     <Compile Include="scr\Subrecords\EDID.cs" />
@@ -76,7 +78,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="configurations\PathsConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

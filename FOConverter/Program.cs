@@ -8,7 +8,7 @@ namespace FOConverter
         private static void Main(string[] args)
         {
             console.createNewLog();
-            var config = new PathsPropsConfig();
+            var config = new Configuration();
             config.ReadConfig();
             var converter = new Converter();
             converter.Process(config);
