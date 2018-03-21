@@ -1,7 +1,7 @@
 ﻿{
-  "converters": [
+  "games": [
     {
-      "game": "Fallout3",
+      "name": "Fallout3",
       "prefix": "FO3",
       "ignoreGroups": [
         "GMST",

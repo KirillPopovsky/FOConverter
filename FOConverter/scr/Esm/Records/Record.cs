@@ -20,13 +20,13 @@ namespace FOConverter.scr.Records
         //8..12
         public string Flags
         {
-            get { return EsmBinaryConverter.ByteArrayToHexString(new ArraySegment<byte>(HeaderData, 8, 4).ToArray()); }
+            get { return ByteConverter.ByteArrayToHexString(new ArraySegment<byte>(HeaderData, 8, 4).ToArray()); }
         }
 
         //12..16
         public string FormId
         {
-            get { return EsmBinaryConverter.ByteArrayToHexString(new ArraySegment<byte>(HeaderData, 12, 4).ToArray()); }
+            get { return ByteConverter.ByteArrayToHexString(new ArraySegment<byte>(HeaderData, 12, 4).ToArray()); }
         }
 
         //16..20

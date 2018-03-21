@@ -14,6 +14,11 @@ namespace FOConverter.scr
         private PathsConfig _pathsConfig;
         private ConvertConfig _converConfig;
 
+        public ConvertConfig ConvertConfig
+        {
+            get { return _converConfig; }
+        }
+
         public string Fallout3DataPath
         {
             get { return _pathsConfig.Fallout3DataFolderPath; }

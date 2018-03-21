@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FOConverter.scr.Common
 {
-    public class EsmBinaryConverter
+    public class ByteConverter
     {
         public static string ByteArrayToHexString(byte[] _b)
         {

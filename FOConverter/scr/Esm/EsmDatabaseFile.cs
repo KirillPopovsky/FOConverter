@@ -5,24 +5,18 @@ using FOConverter.scr.Common;
 using FOConverter.scr.Groups;
 using FOConverter.scr.Records;
 
-namespace FOConverter.scr.F3
+namespace FOConverter.scr.Esm
 {
-    public abstract class EsmDatabase
+    public class EsmDatabaseFile
     {
-        public abstract void Read(string _path);
-    }
-
-
-    public class F3EsmDatabase : EsmDatabase
-    {
-        private Record TES4;
+        public Record TES4;
 
         private Dictionary<string, TopLevelGroup> topLevelGroups;
         private string[] topLevelGroupsKeys;
 
-        public override void Read(string _path)
+        public void Read(string _path)
         {
-            var esmbr = new EsmBinaryReader(_path + "\\Fallout3.esm");
+            var esmbr = new EsmBinaryReader(_path);
             TES4 = esmbr.ReadRecordHeader();
             topLevelGroups = new Dictionary<string, TopLevelGroup>();
             console.log("\nTES4 Record:\n" + TES4 + " \n");

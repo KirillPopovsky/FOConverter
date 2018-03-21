@@ -1,5 +1,8 @@
-﻿using FOConverter.scr;
+﻿using System;
+using FOConverter.Properties;
+using FOConverter.scr;
 using FOConverter.scr.Common;
+using FOConverter.scr.Esm;
 
 namespace FOConverter
 {
@@ -10,8 +13,8 @@ namespace FOConverter
             console.createNewLog();
             var config = new Configuration();
             config.ReadConfig();
-            var converter = new Converter();
-            converter.Process(config);
+            var main = new Main(config);
+            main.ReadFiles();
         }
     }
 }

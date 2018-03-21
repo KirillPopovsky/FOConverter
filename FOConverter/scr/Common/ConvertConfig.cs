@@ -4,12 +4,12 @@ namespace FOConverter.scr.Common
 {
     public class ConvertConfig
     {
-        public converter[] converters;
+        public game[] games;
     }
 
-    public struct converter
+    public struct game
     {
-        public string game;
+        public string name;
         public string prefix;
         public string[] ignoreGroups;
         public string[] ignoreRecords;

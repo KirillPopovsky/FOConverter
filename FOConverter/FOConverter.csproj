@@ -50,18 +50,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scr\Common\console.cs" />
     <Compile Include="scr\Common\ConvertConfig.cs" />
-    <Compile Include="scr\Common\EsmByteConverter.cs" />
+    <Compile Include="scr\Common\EsmBinaryReader.cs" />
+    <Compile Include="scr\Common\ByteConverter.cs" />
+    <Compile Include="scr\Common\PathBuilder.cs" />
     <Compile Include="scr\Common\PathsConfig.cs" />
     <Compile Include="scr\Configuration.cs" />
-    <Compile Include="scr\Converter.cs" />
-    <Compile Include="scr\EsmBinaryReader.cs" />
-    <Compile Include="scr\F3\F3EsmDatabase.cs" />
-    <Compile Include="scr\Groups\Group.cs" />
-    <Compile Include="scr\Groups\TopLevelGroup.cs" />
-    <Compile Include="scr\Records\Record.cs" />
-    <Compile Include="scr\Records\BaseRecord.cs" />
-    <Compile Include="scr\Subrecords\EDID.cs" />
-    <Compile Include="scr\Subrecords\Subrecord.cs" />
+    <Compile Include="scr\Esm\EsmDatabaseFile.cs" />
+    <Compile Include="scr\Esm\Groups\Group.cs" />
+    <Compile Include="scr\Esm\Groups\TopLevelGroup.cs" />
+    <Compile Include="scr\Esm\Records\BaseRecord.cs" />
+    <Compile Include="scr\Esm\Records\Record.cs" />
+    <Compile Include="scr\Esm\Subrecords\EDID.cs" />
+    <Compile Include="scr\Esm\Subrecords\Subrecord.cs" />
+    <Compile Include="scr\Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

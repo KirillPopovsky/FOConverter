@@ -37,7 +37,7 @@ namespace FOConverter.scr.Records
         //0..4
         public string Signature
         {
-            get { return EsmBinaryConverter.ByteArrayToString(new ArraySegment<byte>(HeaderData, 0, 4).ToArray()); }
+            get { return ByteConverter.ByteArrayToString(new ArraySegment<byte>(HeaderData, 0, 4).ToArray()); }
         }
 
         //4..8
