@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FOConverter.scr;
 using FOConverter.scr.Common;
+using FOConverter.scr.Converters.F3;
 using FOConverter.scr.Esm;
 
 namespace FOConverter.Properties
@@ -29,6 +31,25 @@ namespace FOConverter.Properties
                 }
 
                 games.Add(game.name, files);
+            }
+        }
+
+        public void Convert()
+        {
+            var converter = new Converter();
+            foreach (var game in games.Keys)
+            {
+                foreach (var fileName in games[game].Keys)
+                {
+                    foreach (var topGrouKey in games[game][fileName].topLevelGroups.Keys)
+                    {
+                        var file = games[game][fileName];
+                        foreach (var record in file.topLevelGroups[topGrouKey].ChildRecords)
+                        {
+                            var convertedRecord = converter.Convert(record, game);
+                        }
+                    }
+                }
             }
         }
     }

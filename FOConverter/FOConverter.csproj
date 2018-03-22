@@ -55,6 +55,9 @@
     <Compile Include="scr\Common\PathBuilder.cs" />
     <Compile Include="scr\Common\PathsConfig.cs" />
     <Compile Include="scr\Configuration.cs" />
+    <Compile Include="scr\Converters\RecordConverter.cs" />
+    <Compile Include="scr\Converters\Converter.cs" />
+    <Compile Include="scr\Converters\DefaultRecordConverter.cs" />
     <Compile Include="scr\Esm\EsmDatabaseFile.cs" />
     <Compile Include="scr\Esm\Groups\Group.cs" />
     <Compile Include="scr\Esm\Groups\TopLevelGroup.cs" />
@@ -81,6 +84,9 @@
     <Content Include="configurations\PathsConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scr\Converters\F3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

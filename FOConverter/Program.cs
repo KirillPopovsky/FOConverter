@@ -15,6 +15,7 @@ namespace FOConverter
             config.ReadConfig();
             var main = new Main(config);
             main.ReadFiles();
+            main.Convert();
         }
     }
 }

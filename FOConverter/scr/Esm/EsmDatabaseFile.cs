@@ -11,7 +11,7 @@ namespace FOConverter.scr.Esm
     {
         public Record TES4;
 
-        private Dictionary<string, TopLevelGroup> topLevelGroups;
+        public Dictionary<string, TopLevelGroup> topLevelGroups;
         private string[] topLevelGroupsKeys;
 
         public void Read(string _path)
