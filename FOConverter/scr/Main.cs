@@ -4,6 +4,7 @@ using FOConverter.scr;
 using FOConverter.scr.Common;
 using FOConverter.scr.Converters.F3;
 using FOConverter.scr.Esm;
+using FOConverter.scr.Records;
 
 namespace FOConverter.Properties
 {
@@ -39,6 +40,7 @@ namespace FOConverter.Properties
             var converter = new Converter();
             foreach (var game in games.Keys)
             {
+                var esm = new EsmDatabaseFile();
                 foreach (var fileName in games[game].Keys)
                 {
                     foreach (var topGrouKey in games[game][fileName].topLevelGroups.Keys)
@@ -51,6 +53,10 @@ namespace FOConverter.Properties
                     }
                 }
             }
+        }
+
+        protected BaseRecord[] Convert(BaseRecord record)
+        {
         }
     }
 }
